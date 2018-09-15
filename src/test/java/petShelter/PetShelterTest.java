@@ -49,7 +49,7 @@ public class PetShelterTest {
 		assertThat(check, is("A little lumpy"));
 	}
 	@Test
-	public void allPetsHungerDecreasesFrom5To4WithFeeding() {
+	public void aPetsHungerDecreasesFrom5To4WithFeeding() {
 		underTest.put("Boris", new VirtualPet("Boris", "A mean-looking character",5, 5, 5));
 		underTest.put("Steve", new VirtualPet("Steve", "A little lumpy", 5, 5, 5));
 		underTest.feedAllPets();
@@ -77,11 +77,31 @@ public class PetShelterTest {
 		assertEquals(4, check);
 	}
 	
+	@Test
+	public void putSteveInAdoptedList() {
+		underTest.put("Boris", new VirtualPet("Boris", "A mean-looking character",5, 5, 5));
+		underTest.put("Steve", new VirtualPet("Steve", "A little lumpy", 5, 5, 5));
+		underTest.adoptPet("Steve");
+		Collection<VirtualPet> allAdoptedPets = underTest.getAllAdpotedPets();
+		assertEquals(1, allAdoptedPets.size());
+	}
+	@Test
+	public void checkThatSteveIsntInTheShelterAfterAdoption() {
+		underTest.put("Boris", new VirtualPet("Boris", "A mean-looking character",5, 5, 5));
+		underTest.put("Steve", new VirtualPet("Steve", "A little lumpy", 5, 5, 5));
+		underTest.adoptPet("Steve");
+		Collection<VirtualPet> allPets = underTest.getAllPets();
+		assertEquals(1, allPets.size());
+	}
+	@Test
+	public void hungerShouldIncreaseFrom5To6WithTick() {
+		underTest.put("Boris", new VirtualPet("Boris", "A mean-looking character",5, 5, 5));
+		underTest.put("Steve", new VirtualPet("Steve", "A little lumpy", 5, 5, 5));
+		underTest.tick();
+		int check = underTest.getHungerLevel("Steve");
+		assertEquals(6, check);
+	}
 	
-	
-	//feed to decrease hunger, increase thirst
-	//water to decrease thirst
-	//play to decrease boredom, increase thirst
 	
 	
 }
