@@ -58,6 +58,27 @@ public class PetShelterTest {
 		
 	}
 	
+	@Test
+	public void allPetsThirstDecreasesWithWatering() {
+		underTest.put("Boris", new VirtualPet("Boris", "A mean-looking character",5, 5, 5));
+		underTest.put("Steve", new VirtualPet("Steve", "A little lumpy", 5, 5, 5));
+		underTest.waterAllPets();
+		int check = underTest.getThirstLevel("Boris");
+		assertEquals(4, check);
+		
+	}
+	
+	@Test
+	public void steveBoredomDecreasesFrom5to4WithPlaying() {
+		underTest.put("Boris", new VirtualPet("Boris", "A mean-looking character",5, 5, 5));
+		underTest.put("Steve", new VirtualPet("Steve", "A little lumpy", 5, 5, 5));
+		underTest.playWith("Steve");
+		int check = underTest.getBoredomLevel("Steve");
+		assertEquals(4, check);
+	}
+	
+	
+	
 	//feed to decrease hunger, increase thirst
 	//water to decrease thirst
 	//play to decrease boredom, increase thirst
