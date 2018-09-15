@@ -1,7 +1,8 @@
 package petShelter;
 
+import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertEquals;
-
+import static org.junit.Assert.assertThat;
 
 import java.util.Collection;
 
@@ -12,35 +13,48 @@ public class PetShelterTest {
 
 	@Test
 	public void shouldAddAPet() {
-		underTest.addPet("Boris", new VirtualPet("Boris", "A mean-looking character",5, 5, 5));
+		underTest.put("Boris", new VirtualPet("Boris", "A mean-looking character",5, 5, 5));
 		Collection<VirtualPet> allPets = underTest.getAllPets();
 		assertEquals(1, allPets.size());
 	}
 	
 	@Test
 	public void shouldAddTwoPets() {
-		underTest.addPet("Steve", new VirtualPet("Steve", "A little lumpy", 4,4,4));
-		underTest.addPet("Boris", new VirtualPet("Boris", "A mean-looking character",5, 5, 5));
+		underTest.put("Steve", new VirtualPet("Steve", "A little lumpy", 4,4,4));
+		underTest.put("Boris", new VirtualPet("Boris", "A mean-looking character",5, 5, 5));
 		Collection<VirtualPet> allPets = underTest.getAllPets();
 		assertEquals(2, allPets.size());
 	}
 	
 	@Test 
 	public void shouldDeleteAPet() {
-		underTest.addPet("Steve", new VirtualPet("Steve", "A little lumpy", 4,4,4));
-		underTest.addPet("Boris", new VirtualPet("Boris", "A mean-looking character",5, 5, 5));
+		underTest.put("Steve", new VirtualPet("Steve", "A little lumpy", 4,4,4));
+		underTest.put("Boris", new VirtualPet("Boris", "A mean-looking character",5, 5, 5));
 		underTest.removePet("Boris");
 		Collection<VirtualPet> allPets = underTest.getAllPets();
 		assertEquals(1, allPets.size());
 	}
 	
 	@Test
+	public void steveHungerShouldBe5() {
+		underTest.put("Steve", new VirtualPet("Steve", "A little lumpy", 5, 5, 5));
+		int check = underTest.getHungerLevel("Steve");
+		assertEquals(5, check);
+	}
+	
+	@Test
+	public void getSteveDescription() {
+		underTest.put("Steve", new VirtualPet("Steve", "A little lumpy", 5, 5, 5));
+		String check = underTest.getDescription("Steve");
+		assertThat(check, is("A little lumpy"));
+	}
+	@Test
 	public void allPetsHungerDecreasesFrom5To4WithFeeding() {
-		underTest.addPet("Boris", new VirtualPet("Boris", "A mean-looking character",5, 5, 5));
-		underTest.addPet("Steve", new VirtualPet("Steve", "A little lumpy", 5, 5, 5));
+		underTest.put("Boris", new VirtualPet("Boris", "A mean-looking character",5, 5, 5));
+		underTest.put("Steve", new VirtualPet("Steve", "A little lumpy", 5, 5, 5));
 		underTest.feedAllPets();
-		ArrayList <int> allHunger = underTest.getHungerLevels();
-		assert(allHunger.contains(4));
+		int check = underTest.getHungerLevel("Steve");
+		assertEquals(4, check);
 		
 	}
 	
