@@ -8,6 +8,8 @@ public class PetShelter {
 
 	Map<String, VirtualPet> pets = new HashMap <String, VirtualPet>();
 	Map<String, VirtualPet> adoptedPets = new HashMap <String, VirtualPet>();
+	
+	private int dupeCount = 1;
 
 	
 
@@ -15,13 +17,17 @@ public class PetShelter {
 	public Collection<VirtualPet> getAllPets() {
 		return pets.values();
 	}
-
+		// returns all the adopted VirtualPet objects
 	public Collection<VirtualPet> getAllAdpotedPets() {
 		return adoptedPets.values();
 	}
 	public void adoptPet(String name) {
+		if (adoptedPets.containsKey(name)) {
+			name = name + dupeCount;
+			dupeCount ++;
+		}
 		adoptedPets.put(name, pets.get(name));
-		removePet(name);
+			removePet(name);
 	}
 	
 	public void removePet(String name) {
@@ -43,15 +49,14 @@ public class PetShelter {
 		return (pets.get(name).getDescription());
 	}
 
-	public void put(String string, VirtualPet virtualPet) {
-		pets.put(string, virtualPet);
+	public void put(String name, VirtualPet virtualPet) {
+			pets.put(name, virtualPet);
 	}
 
 	public void waterAllPets() {
 		for (VirtualPet pet : getAllPets()) {
 			pet.water();
 		}
-		
 	}
 
 	public int getThirstLevel(String name) {
@@ -61,7 +66,6 @@ public class PetShelter {
 
 	public void playWith(String name) {
 		pets.get(name).play();
-		
 	}
 
 	public int getBoredomLevel(String name) {
@@ -92,6 +96,11 @@ public class PetShelter {
 		}
 	}
 
+	public boolean checkDupe(String name) {
+		return pets.containsKey(name);
+	}
+
+	
 
 
 
