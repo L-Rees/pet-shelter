@@ -35,7 +35,7 @@ public class PetShelter {
 	}
 
 	public void feedAllPets() {
-		for (VirtualPet pet : getAllPets()) {
+		for (VirtualPet pet : pets.values()) {
 			pet.feed();
 		}
 	}
@@ -54,7 +54,7 @@ public class PetShelter {
 	}
 
 	public void waterAllPets() {
-		for (VirtualPet pet : getAllPets()) {
+		for (VirtualPet pet : pets.values()) {
 			pet.water();
 		}
 	}
@@ -80,18 +80,18 @@ public class PetShelter {
 	}
 
 	private void increaseThirst() {
-		for (VirtualPet pet : getAllPets()) {
+		for (VirtualPet pet : pets.values()) {
 			pet.thirstier();
 		}
 	}
 
 	private void increaseBoredom() {
-		for (VirtualPet pet : getAllPets()) {
+		for (VirtualPet pet : pets.values()) {
 			pet.boreder();
 		}
 	}
 	private void increaseHunger() {
-		for (VirtualPet pet : getAllPets()) {
+		for (VirtualPet pet : pets.values()) {
 			pet.hungrier();
 		}
 	}
@@ -100,9 +100,29 @@ public class PetShelter {
 		return pets.containsKey(name);
 	}
 
-	
+	public String shelterStatus() {
+		String status = "\t\t Lisa's Home For Helpless Pets\n\n\t\t\tPET STATUS\n"
+				+ "\tHunger\t\tThirst\t\tBoredom\n";
+		for (VirtualPet pet : pets.values()) {
+			String name = pet.getName();
+			status +=  "\n" + name + "\t " + showLevel(getHungerLevel(name)) + "\t" + showLevel(getThirstLevel(name)) + "\t" + showLevel(getBoredomLevel(name));		}
+		
+		return status;
+		
+	}
 
+	public String showLevel(int quality) {
+		String level = "";
+		for (int i = 0; i < quality; i++) {
+			level = level + "|";
+		}
+		for (int i = 0; i < 10 - quality; i++) {
+			level = level + ".";
+		}
+		return level;
 
+		// Bad-||||......-Great!
+	}
 
 	
 
