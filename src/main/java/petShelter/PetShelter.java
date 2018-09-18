@@ -123,6 +123,11 @@ public class PetShelter {
 
 		// Bad-||||......-Great!
 	}
+	public String suggestion() {
+
+
+		return null;
+	}
 
 	
 

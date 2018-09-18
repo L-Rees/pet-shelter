@@ -63,7 +63,8 @@ public class PetShelterApp {
 		while (!menuChoice.equals("6")) {
 
 			System.out.println(petShelter.shelterStatus());
-			generalMenu();
+			System.out.println(petShelter.suggestion());
+			System.out.println(generalMenu());
 			menuChoice = input.nextLine();
 			if (menuChoice.equals("1")) {
 				petShelter.feedAllPets();
@@ -148,7 +149,7 @@ public class PetShelterApp {
 			} else if (!menuChoice.equals("6")) {
 				System.out.println("That is not a valid menu option.");
 			}
-
+			petShelter.tick();
 		}
 		System.out.println("Thank you for taking care of the pets in Lisa's Home for Helpless Pets! Goodbye.");
 		System.exit(0);
