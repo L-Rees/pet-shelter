@@ -44,17 +44,16 @@ public class VirtualPet {
 	}
 
 	public void feed() {
-		hunger -= 1;
+		hunger -= 5;
 		thirst += 1;
 	}
 
 	public void water() {
-		thirst -= 1;
-
+		thirst -= 5;
 	}
 
 	public void play() {
-		boredom -= 1;
+		boredom -= 7;
 		thirst += 1;
 	}
 

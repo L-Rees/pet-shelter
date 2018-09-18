@@ -59,9 +59,8 @@ public class PetShelterApp {
 		} else if (entryChoice.equalsIgnoreCase("n")) {
 			petShelter.put(petName, new VirtualPet(petName, petDescription));
 		}
-		String menuChoice = null;
+		String menuChoice = "0";
 		while (!menuChoice.equals("6")) {
-
 			System.out.println(petShelter.shelterStatus());
 			System.out.println(petShelter.suggestion());
 			System.out.println(generalMenu());
@@ -73,9 +72,11 @@ public class PetShelterApp {
 				petShelter.waterAllPets();
 				System.out.println("All the pets have been watered.");
 			} else if (menuChoice.equals("3")) {
+				System.out.println("These are the current pets in the Shelter\n");
+				System.out.println(petShelter.petList());
 				System.out.println("Which pet would you like to play with?");
 				String petChoice = input.nextLine();
-				while (!petShelter.checkDupe(petChoice)) {
+				while (!petShelter.nameCheck(petChoice)) {
 					System.out.println("Please enter a valid pet");
 					petChoice = input.nextLine();
 				}
@@ -84,7 +85,7 @@ public class PetShelterApp {
 			} else if (menuChoice.equalsIgnoreCase("4")) {
 				System.out.println("What is the pet's name?");
 				petName = input.nextLine().trim();
-				while (petShelter.checkDupe(petName)) {
+				while (petShelter.nameCheck(petName)) {
 					System.out.println("That name is already in use in the shelter. Please enter another name.");
 					petName = input.nextLine().trim();
 				}
@@ -137,9 +138,11 @@ public class PetShelterApp {
 					petShelter.put(petName, new VirtualPet(petName, petDescription));
 				}
 			} else if (menuChoice.equalsIgnoreCase("5")) {
+				System.out.println("These are the current pets in the Shelter\n");
+				System.out.println(petShelter.petList());
 				System.out.println("Which pet is being adopted?");
 				String petChoice = input.nextLine();
-				while (!petShelter.checkDupe(petChoice)) {
+				while (!petShelter.nameCheck(petChoice)) {
 					System.out.println(
 							"There is currently no pet by that name in the shelter. Please enter a valid name.");
 					petChoice = input.nextLine().trim();

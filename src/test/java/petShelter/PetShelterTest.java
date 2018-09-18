@@ -91,13 +91,13 @@ public class PetShelterTest {
 	}
 	@Test
 	public void shouldReturnTrueIfSteveIsInShelter() {
-		boolean check = underTest.checkDupe("Steve");
+		boolean check = underTest.nameCheck("Steve");
 		assertTrue(check);
 	}
 	@Test
 	public void shouldReturnFalseAfterSteveIsAdopted() {
 		underTest.adoptPet("Steve");
-		boolean check = underTest.checkDupe("Steve");
+		boolean check = underTest.nameCheck("Steve");
 		assertFalse(check);
 	}
 	@Test
