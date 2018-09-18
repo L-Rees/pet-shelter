@@ -148,7 +148,8 @@ public class PetShelterApp {
 					petChoice = input.nextLine().trim();
 				}
 				petShelter.adoptPet(petChoice);
-				System.out.println(petChoice + " has found a forever home!");
+				System.out.println(petChoice + " has found a forever home!\n" + petShelter.adoptedPets.values().size()
+						+ " pets have found a new home thanks to you!");
 			} else if (!menuChoice.equals("6")) {
 				System.out.println("That is not a valid menu option.");
 			}
