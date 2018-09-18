@@ -155,7 +155,8 @@ public class PetShelterApp {
 			}
 			petShelter.tick();
 		}
-		System.out.println("Thank you for taking care of the pets in Lisa's Home for Helpless Pets! Goodbye.");
+		System.out.println("Thank you for taking care of the pets in Lisa's Home for Helpless Pets!\n" + petShelter.adoptedPets.values().size() + 
+				 " pets have found a new home thanks to you! Goodbye.");
 		System.exit(0);
 
 		input.close();
