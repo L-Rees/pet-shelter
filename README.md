@@ -1,5 +1,5 @@
 # Virtual Pet Shelter
-----
+
 
 I designed the pet shelter to be a way to track pets and their needs in the console, and not as a game per se, though it does implement the game loop and has some automated features.
 
